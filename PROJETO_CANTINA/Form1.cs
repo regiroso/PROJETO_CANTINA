@@ -1,25 +1,40 @@
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace PROJETO_CANTINA
 {
     public partial class frmTela1 : Form
     {
+
+        // Lista de Formas de Pagamento
+        List<string> pagamento = new List<string>()
+        {
+            "Débito",
+            "Crédito",
+            "Pix",
+            "Dinheiro",
+        };
+
         // Dicionário com nome do item e preço
         Dictionary<string, decimal> preco = new Dictionary<string, decimal>
             {
+                { "Pão de Queijo", 3.50m },
                 { "Coxinha", 5.00m },
-                { "Pastel", 6.00m },
-                { "Suco", 3.00m },
-                { "Refrigerante", 4.50m },
-                { "Brigadeiro", 2.00m }
+                { "Pastel de Carne", 6.00m },
+                { "Pastel de Queijo", 5.50m },
+                { "Suco Natural (300 ml)", 4.00m },
+                { "Refrigerante Lata", 4.50m },
+                { "Hamburguer Simples", 8.00m },
+                { "Hamburguer com Queijo", 9.00m },
+                { "X-Tudo", 12.00m },
+                { "Água Mineral (500 ml)", 2.50m }
             };
 
         // Dicionário para armazenar as quantidades dos itens no carrinho
         Dictionary<string, int> pedido = new Dictionary<string, int>();
 
-        //carrinho >>>> pedido
+
+
+
         public frmTela1()
         {
             InitializeComponent();
@@ -32,6 +47,8 @@ namespace PROJETO_CANTINA
             {
                 lstCardapio.Items.Add($"{item.Key} R$: {item.Value:0.00}");
             }
+            cboPagamento.DataSource = pagamento;
+
 
             lblValor.Text = "R$: 0,00";
         }
@@ -61,6 +78,12 @@ namespace PROJETO_CANTINA
 
             lblValor.Text = $"R$: {total:0.00}";
         }
+
+
+        // Melhor posição?
+        decimal valorDinheiro;
+        bool finalizado = true;
+
 
 
         private void btnAdicionar_Click(object sender, EventArgs e)
@@ -124,7 +147,19 @@ namespace PROJETO_CANTINA
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
+            string cliente = Interaction.InputBox("Digite o nome do Cliente:");
+
             DialogResult resultado = MessageBox.Show("Deseja finalizar o pedido?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (cboPagamento.SelectedItem != null && cboPagamento.SelectedItem.ToString() == "Dinheiro")
+            {
+                string valor = Interaction.InputBox("Digite o valor pago em dinheiro:");
+                if (string.IsNullOrEmpty(valor) || !decimal.TryParse(valor, out valorDinheiro))
+                {
+                    MessageBox.Show("Valor inválido.");
+                    return;
+                }
+            }
 
             if (resultado == DialogResult.Yes)
             {
@@ -134,12 +169,14 @@ namespace PROJETO_CANTINA
                     return;
                 }
 
-                // Montar o extrato formatado
+                // Montar extrato
                 System.Text.StringBuilder extrato = new System.Text.StringBuilder();
                 extrato.AppendLine("********* Extrato do Pedido *********");
                 extrato.AppendLine();
 
                 decimal total = 0;
+                bool pagamentoValido = true;
+                decimal troco = 0;
 
                 foreach (var item in pedido)
                 {
@@ -153,25 +190,52 @@ namespace PROJETO_CANTINA
                     total += subtotal;
                 }
 
+                if (cboPagamento.SelectedItem != null && cboPagamento.SelectedItem.ToString() == "Dinheiro")
+                {
+                    if (valorDinheiro >= total)
+                    {
+                        troco = valorDinheiro - total;
+                    }
+                    else
+                    {
+                        pagamentoValido = false;
+                    }
+                }
+
                 extrato.AppendLine();
                 extrato.AppendLine($"Total: R$ {total:0.00}");
+
+                if (cboPagamento.SelectedItem.ToString() == "Dinheiro")
+                {
+                    extrato.AppendLine($"Valor Pago: R$ {valorDinheiro:0.00}");
+                    extrato.AppendLine($"Troco: R$ {troco:0.00}");
+                }
+
+                extrato.AppendLine("Cliente: " + cliente);
                 extrato.AppendLine("*************************************");
 
-                // Exibir o extrato para o usuário
-                MessageBox.Show(extrato.ToString(), "Extrato do Pedido", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Aqui você pode adicionar código para "finalizar" de fato o pedido, como limpar o carrinho, salvar dados, etc.
-                pedido.Clear();
-                AtualizarListaCarrinho();
-                AtualizarTotal();
+                if (pagamentoValido)
+                {
+                    MessageBox.Show(extrato.ToString(), "Extrato do Pedido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    pedido.Clear();
+                    AtualizarListaCarrinho();
+                    AtualizarTotal();
+                }
+                else
+                {
+                    MessageBox.Show("Valor insuficiente para finalizar o pedido.");
+                }
             }
             else
             {
-                // O usuário clicou em "Não"
                 MessageBox.Show("Pedido não foi finalizado.");
             }
         }
 
-        
+        private void cboPagamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

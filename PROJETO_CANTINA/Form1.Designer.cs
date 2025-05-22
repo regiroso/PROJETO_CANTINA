@@ -35,6 +35,7 @@
             btnFinalizar = new Button();
             lblTotal = new Label();
             lblValor = new Label();
+            cboPagamento = new ComboBox();
             SuspendLayout();
             // 
             // lstCardapio
@@ -77,7 +78,7 @@
             // 
             // btnFinalizar
             // 
-            btnFinalizar.Location = new Point(325, 270);
+            btnFinalizar.Location = new Point(325, 284);
             btnFinalizar.Name = "btnFinalizar";
             btnFinalizar.Size = new Size(110, 53);
             btnFinalizar.TabIndex = 4;
@@ -88,7 +89,7 @@
             // lblTotal
             // 
             lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(301, 222);
+            lblTotal.Location = new Point(300, 208);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(64, 15);
             lblTotal.TabIndex = 5;
@@ -98,17 +99,28 @@
             // 
             lblValor.AutoSize = true;
             lblValor.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblValor.Location = new Point(380, 208);
+            lblValor.Location = new Point(379, 194);
             lblValor.Name = "lblValor";
             lblValor.Size = new Size(44, 32);
             lblValor.TabIndex = 6;
             lblValor.Text = "R$";
+            // 
+            // cboPagamento
+            // 
+            cboPagamento.FormattingEnabled = true;
+            cboPagamento.Location = new Point(282, 239);
+            cboPagamento.Name = "cboPagamento";
+            cboPagamento.Size = new Size(199, 23);
+            cboPagamento.TabIndex = 7;
+            cboPagamento.SelectedIndexChanged += cboPagamento_SelectedIndexChanged;
+            cboPagamento.Click += cboPagamento_SelectedIndexChanged;
             // 
             // frmTela1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cboPagamento);
             Controls.Add(lblValor);
             Controls.Add(lblTotal);
             Controls.Add(btnFinalizar);
@@ -132,5 +144,6 @@
         private Button btnFinalizar;
         private Label lblTotal;
         private Label lblValor;
+        private ComboBox cboPagamento;
     }
 }

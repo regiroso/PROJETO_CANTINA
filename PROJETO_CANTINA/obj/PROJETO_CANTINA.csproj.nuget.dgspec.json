@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Instrutor\\Desktop\\TÉCNICO C# DS\\PROJETO_CANTINA\\PROJETO_CANTINA\\PROJETO_CANTINA.csproj": {}
+    "D:\\TADS\\CURSO TECNICO\\PROJETO_CANTINA\\PROJETO_CANTINA\\PROJETO_CANTINA.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Instrutor\\Desktop\\TÉCNICO C# DS\\PROJETO_CANTINA\\PROJETO_CANTINA\\PROJETO_CANTINA.csproj": {
+    "D:\\TADS\\CURSO TECNICO\\PROJETO_CANTINA\\PROJETO_CANTINA\\PROJETO_CANTINA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Instrutor\\Desktop\\TÉCNICO C# DS\\PROJETO_CANTINA\\PROJETO_CANTINA\\PROJETO_CANTINA.csproj",
+        "projectUniqueName": "D:\\TADS\\CURSO TECNICO\\PROJETO_CANTINA\\PROJETO_CANTINA\\PROJETO_CANTINA.csproj",
         "projectName": "PROJETO_CANTINA",
-        "projectPath": "C:\\Users\\Instrutor\\Desktop\\TÉCNICO C# DS\\PROJETO_CANTINA\\PROJETO_CANTINA\\PROJETO_CANTINA.csproj",
-        "packagesPath": "C:\\Users\\Instrutor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Instrutor\\Desktop\\TÉCNICO C# DS\\PROJETO_CANTINA\\PROJETO_CANTINA\\obj\\",
+        "projectPath": "D:\\TADS\\CURSO TECNICO\\PROJETO_CANTINA\\PROJETO_CANTINA\\PROJETO_CANTINA.csproj",
+        "packagesPath": "C:\\Users\\SORPROFE\\.nuget\\packages\\",
+        "outputPath": "D:\\TADS\\CURSO TECNICO\\PROJETO_CANTINA\\PROJETO_CANTINA\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Instrutor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SORPROFE\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -25,7 +25,8 @@
           "net8.0-windows"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0-windows7.0": {
@@ -42,8 +43,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net8.0-windows7.0": {
@@ -67,7 +67,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
